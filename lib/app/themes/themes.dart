@@ -4,6 +4,7 @@ import 'package:flutter_game1/app/global/constants.dart';
 class Themes {
   static ThemeData lightTheme() {
     return ThemeData.light().copyWith(
+      cardColor: cardColor,
         brightness: Brightness.light,
         appBarTheme: AppBarTheme(
             backgroundColor: backColor,
