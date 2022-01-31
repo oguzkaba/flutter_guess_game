@@ -36,8 +36,14 @@ class HomeView extends GetView<HomeController> {
                 width: Get.width * .6,
                 height: Get.height * .05,
                 child: TextFormField(
+                    style: TextStyle(
+                        color: mainTextColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
+                      hintStyle:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       fillColor: Colors.white,
                       filled: true,
                       hintText: "İsim",

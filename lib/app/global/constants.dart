@@ -28,7 +28,7 @@ const Padding hPaddingM =
 //All
 
 ///List
-List numberlist = [
+List numberList = [
   "number_001.png",
   "number_002.png",
   "number_003.png",
@@ -41,4 +41,5 @@ List numberlist = [
   "",
   "number_011.png"
 ];
-List numberNlist = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0"];
+List numberNList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0"];
+
