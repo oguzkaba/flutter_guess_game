@@ -4,7 +4,7 @@ import 'package:flutter_game1/app/global/constants.dart';
 class Themes {
   static ThemeData lightTheme() {
     return ThemeData.light().copyWith(
-      cardColor: cardColor,
+        cardColor: cardTopColor,
         brightness: Brightness.light,
         appBarTheme: AppBarTheme(
             backgroundColor: backColor,
@@ -12,7 +12,7 @@ class Themes {
                 //color: lightAppBarTextColor,
                 fontSize: 18,
                 fontWeight: FontWeight.bold)),
-        scaffoldBackgroundColor: Colors.white);
+        scaffoldBackgroundColor: backColor);
     // primaryTextTheme:
     //     TextTheme(bodyText1: TextStyle(color: lightTextColor)));
   }
