@@ -6,6 +6,8 @@ import 'package:flutter_game1/app/modules/leaderboard/bindings/leaderboard_bindi
 import 'package:flutter_game1/app/modules/leaderboard/views/leaderboard_view.dart';
 import 'package:flutter_game1/app/modules/playgame/bindings/playgame_binding.dart';
 import 'package:flutter_game1/app/modules/playgame/views/playgame_view.dart';
+import 'package:flutter_game1/app/modules/set_player/bindings/set_player_binding.dart';
+import 'package:flutter_game1/app/modules/set_player/views/set_player_view.dart';
 
 part 'app_routes.dart';
 
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.PLAYGAME,
       page: () => PlaygameView(),
       binding: PlaygameBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETPLAYER,
+      page: () => SetPlayerView(),
+      binding: SetPlayerBinding(),
     ),
   ];
 }

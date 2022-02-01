@@ -1,18 +1,34 @@
 import 'dart:math';
 
 import 'package:flutter_game1/app/modules/home/controllers/home_controller.dart';
+import 'package:flutter_game1/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class PlaygameController extends GetxController {
   final hc = Get.find<HomeController>();
   final selectedNumber = 0.obs;
+  final selectNumberList = [].obs;
   final magicNumber = 0.obs;
   final counter = 4.obs;
 
   @override
   void onInit() {
+    selectedNumber.value = 0;
+    selectNumberList.clear();
+    magicNumber.value = 0;
+    counter.value = 4;
     playLevel();
     super.onInit();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  void reloadGame() {
+    onInit();
   }
 
   void playLevel() {
