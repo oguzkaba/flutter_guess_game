@@ -29,6 +29,7 @@ const Padding hPaddingM =
 
 ///List
 List numberList = [
+  "number_000.png",
   "number_001.png",
   "number_002.png",
   "number_003.png",
@@ -37,31 +38,5 @@ List numberList = [
   "number_006.png",
   "number_007.png",
   "number_008.png",
-  "number_009.png",
-  "",
-  "number_011.png"
+  "number_009.png"
 ];
-List numberNListEasy = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0"];
-List numberNListNormal = [
-  "0",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "11",
-  "12",
-  "13",
-  "14",
-  "15",
-  "16",
-  "17",
-  "18",
-  "19"
-];
-List numberNListHard = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0"];
