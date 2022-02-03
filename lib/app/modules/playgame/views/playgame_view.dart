@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_game1/app/global/constants.dart';
 import 'package:flutter_game1/app/modules/home/controllers/home_controller.dart';
@@ -25,20 +27,42 @@ class PlaygameView extends GetView<PlaygameController> {
               child: _displaySelectBar(),
             ),
             Expanded(
-              flex: 6,
+              flex: 7,
               child: _entryNumberBar(),
             ),
+            Obx(() => Expanded(
+                flex: 1,
+                child: controller.selectedNumber.value ==
+                            controller.magicNumber.value ||
+                        controller.counter.value != 1
+                    ? SizedBox.shrink()
+                    : _bottomQuestionBar()))
           ],
         ),
       ),
     );
   }
 
-  Widget _entryNumberBar() {
+  Row _bottomQuestionBar() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+            onPressed: null,
+            icon: Image.asset(
+              "assets/images/help.gif",
+            )),
+        Text("Yardım almak istermisin..?",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+      ],
+    );
+  }
+
+  Obx _entryNumberBar() {
     return Obx(() => Container(
           width: controller.selectedNumber.value == controller.magicNumber.value
               ? double.infinity
-              : controller.counter.value == 0
+              : controller.isGameOver.value
                   ? double.infinity
                   : Get.width * .8,
           height: Get.height * .6,
@@ -102,7 +126,7 @@ class PlaygameView extends GetView<PlaygameController> {
                         icon: Icon(Icons.refresh, size: 30))
                   ],
                 )
-              : controller.counter.value == 0
+              : controller.isGameOver.value
                   ? Text.rich(TextSpan(
                       text: "Doğru Tahmin ",
                       style: TextStyle(fontSize: 25),
@@ -120,15 +144,23 @@ class PlaygameView extends GetView<PlaygameController> {
                           ? Image.asset(
                               "assets/images/numbers/${numberList[controller.selectedNumber.value]}",
                               scale: 0.7)
-                          : Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                          : Stack(
+                              fit: StackFit.passthrough,
                               children: [
-                                Image.asset(
-                                    "assets/images/numbers/${numberList[(controller.selectedNumber.value ~/ 10).toInt()]}",
-                                    scale: 0.7),
-                                Image.asset(
-                                    "assets/images/numbers/${numberList[(controller.selectedNumber.value % (10*(controller.selectedNumber.value ~/ 10))).toInt()]}",
-                                    scale: 0.7),
+                                Positioned(
+                                  left: (Get.width / 2) - 123,
+                                  top: 50,
+                                  child: Image.asset(
+                                      "assets/images/numbers/${numberList[(controller.selectedNumber.value ~/ 10).toInt()]}",
+                                      scale: 0.7),
+                                ),
+                                Positioned(
+                                  left: (Get.width / 2) - 28,
+                                  top: 50,
+                                  child: Image.asset(
+                                      "assets/images/numbers/${numberList[(controller.selectedNumber.value % (10 * (controller.selectedNumber.value ~/ 10))).toInt()]}",
+                                      scale: 0.7),
+                                ),
                               ],
                             ),
         ));
@@ -146,15 +178,7 @@ class PlaygameView extends GetView<PlaygameController> {
               Text(hc.playerName.value, style: TextStyle(fontSize: 30)),
             ],
           ),
-          Obx(() => Text(
-              controller.counter.value == 1
-                  ? "🌟"
-                  : controller.counter.value == 2
-                      ? "🌟🌟"
-                      : controller.counter.value == 3
-                          ? "🌟🌟🌟"
-                          : "",
-              style: TextStyle(fontSize: 30)))
+          Obx(() => Text(controller.star.value, style: TextStyle(fontSize: 25)))
         ],
       ),
     );
