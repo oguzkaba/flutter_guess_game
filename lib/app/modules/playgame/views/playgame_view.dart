@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_game1/app/global/constants.dart';
 import 'package:flutter_game1/app/modules/home/controllers/home_controller.dart';
@@ -169,16 +167,44 @@ class PlaygameView extends GetView<PlaygameController> {
   Padding _topInfoBar() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
         children: [
-          Row(
-            children: [
-              Image.asset("assets/images/profile.png", scale: 1.5),
-              Text(hc.playerName.value, style: TextStyle(fontSize: 30)),
-            ],
+          Expanded(
+            flex: 8,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Image.asset("assets/images/profile.png", scale: 1.5),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(hc.playerName.value,
+                            style: TextStyle(fontSize: 20)),
+                        Obx(() => Text(
+                            "Toplam Puan: ${controller.totalPoints.value.toString()}",
+                            style: TextStyle(color: Colors.lightBlue)))
+                      ],
+                    ),
+                  ],
+                ),
+                Obx(() => Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(controller.star.value,
+                              style: TextStyle(fontSize: 20)),
+                          Text("Puan: ${controller.point.value.toString()}",
+                              style: TextStyle(fontSize: 20))
+                        ]))
+              ],
+            ),
           ),
-          Obx(() => Text(controller.star.value, style: TextStyle(fontSize: 25)))
+          Expanded(
+              child: SizedBox(
+                  width: Get.width * .9, child: Divider(color: logoLineColor))),
         ],
       ),
     );
