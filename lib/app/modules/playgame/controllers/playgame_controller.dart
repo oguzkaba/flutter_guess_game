@@ -2,11 +2,10 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_game1/app/global/constants.dart';
-import 'package:flutter_game1/app/modules/home/controllers/home_controller.dart';
-import 'package:get/get.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
+import 'package:flutter_guess_game/app/global/constants.dart';
+import 'package:flutter_guess_game/app/modules/home/controllers/home_controller.dart';
+import 'package:get/get.dart';
 
 class PlaygameController extends GetxController {
   final hc = Get.find<HomeController>();
@@ -73,23 +72,23 @@ class PlaygameController extends GetxController {
       addNumberList(10);
       selectColor.value = greenColor;
       magicNumber.value = Random().nextInt(10);
-      print(magicNumber.value);
+      print('magicNumber is: ${magicNumber.value}');
     } else if (hc.currentLevel.value == "normal") {
-      crossAxisCount.value = 5;
+      crossAxisCount.value = 4;
       counter.value = 3;
       star.value = "🌟🌟🌟";
       addNumberList(20);
       selectColor.value = orangeColor;
       magicNumber.value = Random().nextInt(20);
-      print(magicNumber.value);
+      print('magicNumber is: ${magicNumber.value}');
     } else {
-      crossAxisCount.value = 6;
+      crossAxisCount.value = 5;
       counter.value = 4;
       star.value = "🌟🌟🌟🌟";
       addNumberList(30);
       selectColor.value = logoRedColor;
       magicNumber.value = Random().nextInt(30);
-      print(magicNumber.value);
+      print('magicNumber is: ${magicNumber.value}');
     }
     pointCalculate();
   }
@@ -187,6 +186,6 @@ class PlaygameController extends GetxController {
   }
 
   void clearCache() {
-    imageCache!.clearLiveImages();
+    imageCache.clearLiveImages();
   }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_game1/app/global/constants.dart';
+import 'package:flutter_guess_game/app/global/constants.dart';
 
 class Themes {
   static ThemeData lightTheme() {
-    return ThemeData.light().copyWith(
+    return ThemeData.light(useMaterial3: false).copyWith(
         cardColor: cardTopColor,
         brightness: Brightness.light,
         appBarTheme: AppBarTheme(

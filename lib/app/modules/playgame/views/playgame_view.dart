@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_game1/app/global/constants.dart';
-import 'package:flutter_game1/app/modules/home/controllers/home_controller.dart';
-
+import 'package:flutter_guess_game/app/global/constants.dart';
+import 'package:flutter_guess_game/app/modules/home/controllers/home_controller.dart';
 import 'package:get/get.dart';
 
 import '../controllers/playgame_controller.dart';
@@ -21,11 +20,11 @@ class PlaygameView extends GetView<PlaygameController> {
               child: _topInfoBar(),
             ),
             Expanded(
-              flex: 3,
+              flex: 4,
               child: _displaySelectBar(),
             ),
             Expanded(
-              flex: 7,
+              flex: 8,
               child: _entryNumberBar(),
             ),
             Obx(() => Expanded(
@@ -57,56 +56,51 @@ class PlaygameView extends GetView<PlaygameController> {
   }
 
   Obx _entryNumberBar() {
-    return Obx(() => Container(
-          width: controller.selectedNumber.value == controller.magicNumber.value
+    return Obx(() => SizedBox(
+          width: (controller.selectedNumber.value ==
+                      controller.magicNumber.value) ||
+                  controller.isGameOver.value
               ? double.infinity
-              : controller.isGameOver.value
-                  ? double.infinity
-                  : Get.width * .8,
-          height: Get.height * .6,
+              : Get.width * .8,
           child: controller.selectedNumber.value == controller.magicNumber.value
               ? Image.asset("assets/images/rabbit_win.gif",
                   gaplessPlayback: false, fit: BoxFit.fitHeight)
               : controller.isGameOver.value
                   ? Image.asset("assets/images/rabbit_lose.gif",
                       gaplessPlayback: true, fit: BoxFit.fitHeight)
-                  : Align(
-                      alignment: Alignment.center,
-                      child: GridView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: controller.crossAxisCount.value,
-                          crossAxisSpacing: 10.0,
-                          mainAxisSpacing: 10.0,
-                        ),
-                        itemCount: controller.numberList.length,
-                        itemBuilder: (context, i) {
-                          return Center(
-                              child: InkWell(
-                            onTap: controller.selectNumberList.contains(i)
-                                ? null
-                                : () => controller.selectNumber(i),
-                            child: Container(
-                                width: Get.width * .2,
-                                height: Get.height * .1,
-                                decoration: BoxDecoration(
-                                    color:
-                                        controller.selectNumberList.contains(i)
-                                            ? Colors.grey
-                                            : controller.selectColor.value,
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Center(
-                                  child: Text(
-                                    controller.numberList[i].toString(),
-                                    style: TextStyle(
-                                        fontSize: 30, color: Colors.white),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                )),
-                          ));
-                        },
+                  : GridView.builder(
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: 1.3,
+                        crossAxisCount: controller.crossAxisCount.value,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
                       ),
+                      itemCount: controller.numberList.length,
+                      itemBuilder: (context, i) {
+                        return Center(
+                            child: InkWell(
+                          onTap: controller.selectNumberList.contains(i)
+                              ? null
+                              : () => controller.selectNumber(i),
+                          child: Container(
+                              width: Get.width * .2,
+                              height: Get.height * .1,
+                              decoration: BoxDecoration(
+                                  color: controller.selectNumberList.contains(i)
+                                      ? Colors.grey
+                                      : controller.selectColor.value,
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Center(
+                                child: Text(
+                                  controller.numberList[i].toString(),
+                                  style: TextStyle(
+                                      fontSize: 28, color: Colors.white),
+                                  textAlign: TextAlign.center,
+                                ),
+                              )),
+                        ));
+                      },
                     ),
         ));
   }

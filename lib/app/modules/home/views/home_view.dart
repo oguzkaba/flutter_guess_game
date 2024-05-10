@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_game1/app/global/constants.dart';
-import 'package:flutter_game1/app/routes/app_pages.dart';
-
+import 'package:flutter_guess_game/app/global/constants.dart';
+import 'package:flutter_guess_game/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
@@ -11,6 +10,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Center(
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.end,
@@ -29,7 +29,7 @@ class HomeView extends GetView<HomeController> {
                           fontWeight: FontWeight.bold),
                     ),
                     Image.asset("assets/images/logo_magic.png"),
-                    vPaddingM,
+                    vPaddingS,
                     SizedBox(
                         width: Get.width * .9,
                         child: Divider(color: logoLineColor)),
@@ -110,7 +110,7 @@ class HomeView extends GetView<HomeController> {
         height: Get.height * .08,
         child: ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
-              primary: color,
+              backgroundColor: color,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)))),
           onPressed: onClick,
@@ -128,7 +128,7 @@ class HomeView extends GetView<HomeController> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 30.0),
+            padding: const EdgeInsets.symmetric(vertical: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
